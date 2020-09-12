@@ -1,2 +1,8 @@
 .git
 *.pyc
+.dockerignore
+docker-compose.yml
+Dockerfile
+*.md
+.editorconfig
+.gitignore

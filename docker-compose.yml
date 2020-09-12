@@ -1,14 +1,21 @@
 version: "3.5"
 services:
-  python-code-test:
-    image: ostmodern/python-code-test:latest
-    links:
-      - database
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: code-django/base
+    command: flask run --host 0.0.0.0 --port 5000
+    ports:
+      - 5000:5000
+    restart: unless-stopped
 
-  # sample NoSQL db
+  cache:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
   database:
     image: amazon/dynamodb-local
-
-  # sample RDBMS
-  # database:
-  #  image: postgres
+    ports:
+      - 8000:8000
