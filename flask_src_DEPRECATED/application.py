@@ -2,8 +2,9 @@ from typing import Optional
 
 from flask import Flask
 from flask_cors import CORS
+from flask_restplus import Api
 
-from src import config
+from flask_src_DEPRECATED import config
 
 
 class AppSingleton:
@@ -22,7 +23,7 @@ class AppSingleton:
             AppSingleton.__instance = Flask(__name__)
             AppSingleton.__instance.config.from_object(config.current_config)
             CORS(AppSingleton.__instance)
-            self.bootstrap_development_side_wheels()
+            # self.bootstrap_development_side_wheels()
 
     def bootstrap_development_side_wheels(self):
         if config.current_config.IS_TESTING:
@@ -57,10 +58,4 @@ class AppSingleton:
 
 
 app = AppSingleton.get_instance()
-
-app.config.from_object(config.current_config)
-
-
-@app.route('/')
-def index():
-    return ""
+api = Api(app)

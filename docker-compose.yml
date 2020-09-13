@@ -5,9 +5,13 @@ services:
       context: .
       dockerfile: Dockerfile
     image: code-django/base
-    command: flask run --host 0.0.0.0 --port 5000
+    command: python manage.py runserver 0.0.0.0:5000
+    env_file:
+      - env/local.env
     ports:
       - 5000:5000
+    volumes:
+      - .:/src:delegated
     restart: unless-stopped
 
   cache:
@@ -15,7 +19,20 @@ services:
     ports:
       - 6379:6379
 
-  database:
-    image: amazon/dynamodb-local
+  localstack:
+    image: localstack/localstack-full:latest
     ports:
-      - 8000:8000
+      - "4566-4584:4566-4584"
+      - "8080:8080"
+    environment:
+      - SERVICES=dynamodb
+      - DOCKER_HOST=unix:///var/run/docker.sock
+
+  postgres:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: api
