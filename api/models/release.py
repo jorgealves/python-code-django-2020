@@ -1,13 +1,16 @@
-from django.db import models
-from django.db.models import Model
+from pynamodb.attributes import UnicodeAttribute
+
+from api.models.base import BaseModel, IMDBMixin
 
 
-class Release(Model):
+class Release(BaseModel, IMDBMixin):
     """This model represent any kind of release (Music, book, movie, tv show, etc)"""
-    name = models.CharField(max_length=150)
-    year = models.CharField(max_length=50)
-    writer = models.CharField(max_length=100)
-    plot = models.TextField()
-    thumbnail = models.CharField(max_length=100)
+
+    name = UnicodeAttribute(null=False)
+    year = UnicodeAttribute(null=False)
+    writer = UnicodeAttribute(null=False)
+    plot = UnicodeAttribute(null=False)
+    thumbnail = UnicodeAttribute(null=False)
 
     class Meta:
+        table_name = 'release'

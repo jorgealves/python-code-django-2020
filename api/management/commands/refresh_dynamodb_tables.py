@@ -18,9 +18,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             for model in models:
-                if not model.exists():
-                    model.create_table(billing_mode=PAY_PER_REQUEST_BILLING_MODE)
-                    self.stdout.write(f'{str(model)} created')
                 if model.exists():
                     model.delete_table()
                     model.create_table(billing_mode=PAY_PER_REQUEST_BILLING_MODE)
