@@ -11,7 +11,7 @@ from django.conf import settings
 
 class BaseModel(Model):
     """Base DynamoDB model"""
-    id = UnicodeAttribute(hash_key=True)
+    id = UnicodeAttribute(hash_key=True, default=f'{uuid.uuid4()}')
     created = UTCDateTimeAttribute(default=datetime.utcnow())
 
     class Meta:
@@ -25,6 +25,8 @@ class BaseGSI(GlobalSecondaryIndex):
     class Meta:
         billing_mode = PAY_PER_REQUEST_BILLING_MODE
         projection = AllProjection()
+        # read_capacity_units = 5
+        # write_capacity_units = 5
 
 
 class ForeignKeyAttribute(UnicodeAttribute):
@@ -36,5 +38,5 @@ class ForeignKeyAttribute(UnicodeAttribute):
 
 
 class IMDBMixin:
-    imdb_rating = NumberAttribute()
+    imdb_rating = UnicodeAttribute()
     imdb_id = UnicodeAttribute()

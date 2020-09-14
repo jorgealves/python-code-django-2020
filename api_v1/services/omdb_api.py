@@ -3,9 +3,9 @@ from django.conf import settings
 from requests import Response
 
 
-class OMDBApi:
+class OMDBApiService:
     base_url = settings.OMDBAPI_URL
-    title_url = f'{base_url}&t=Game Of Throne&plot=full'
+    title_url = f'{base_url}&t=Game%20Of%20Thrones&plot=full'
     base_query_url = f'{base_url}&plot=full'
     seasons_parameter_pattern = '&Season='
     episode_parameter_pattern = '&i='
@@ -32,7 +32,7 @@ class OMDBApi:
     @classmethod
     def get_season_detail(cls, season: int) -> dict:
         return cls._get_parsed_response(requests.get(
-            url=f'{cls.base_query_url}{cls.seasons_parameter_pattern}{season}',
+            url=f'{cls.title_url}{cls.seasons_parameter_pattern}{season}',
             headers=cls.headers
         ))
 

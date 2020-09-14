@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 if not model.exists():
                     model.create_table(billing_mode=PAY_PER_REQUEST_BILLING_MODE)
                     self.stdout.write(f'{str(model)} created')
-                if model.exists():
+                elif model.exists():
                     model.delete_table()
                     model.create_table(billing_mode=PAY_PER_REQUEST_BILLING_MODE)
                     self.stdout.write(f'{str(model)} created')
