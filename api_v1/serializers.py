@@ -2,7 +2,7 @@ import uuid
 
 from rest_framework import serializers
 
-from api.models.comment import Comment
+from api_v1.models.comment import Comment
 
 
 class CommentSerializer(serializers.Serializer):

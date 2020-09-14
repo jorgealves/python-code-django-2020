@@ -1,6 +1,6 @@
 from pynamodb.attributes import UnicodeAttribute
 
-from api.models.base import BaseModel, IMDBMixin
+from api_v1.models.base import BaseModel, IMDBMixin
 
 
 class Release(BaseModel, IMDBMixin):

@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'api'
+
+    'drf_yasg',
+
+    'api_v1'
 ]
 
 MIDDLEWARE = [
@@ -117,7 +120,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
 REGION = ConfigHelper.get_config_value('AWS_DEFAULT_REGION')
 DYNAMODB_HOST = ConfigHelper.get_config_value('DYNAMODB_HOST')
 OMDBAPI_KEY = ConfigHelper.get_config_value('OMADBAPI_KEY')
-OMDBAPI_URL = f'http://omdbapi.com/apikey={OMDBAPI_KEY}'
+OMDBAPI_URL = f'https://omdbapi.com/?apikey={OMDBAPI_KEY}'

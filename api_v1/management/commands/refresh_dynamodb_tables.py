@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand
 from pynamodb.constants import PAY_PER_REQUEST_BILLING_MODE
 
-from api.models.comment import Comment
-from api.models.episode import Episode
-from api.models.release import Release
+from api_v1.models.comment import Comment
+from api_v1.models.episode import Episode
+from api_v1.models.release import Release
 
 models = [
     Release,

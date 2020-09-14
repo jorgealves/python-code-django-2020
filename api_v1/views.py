@@ -8,10 +8,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
-from api.models.comment import Comment
-from api.models.episode import Episode
-from api.models.release import Release
-from api.serializers import CommentSerializer
+from api_v1.models.comment import Comment
+from api_v1.models.episode import Episode
+from api_v1.models.release import Release
+from api_v1.serializers import CommentSerializer
 
 
 class ListTitleView(APIView):

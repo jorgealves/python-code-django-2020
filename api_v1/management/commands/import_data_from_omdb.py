@@ -2,9 +2,9 @@ import uuid
 
 from django.core.management import BaseCommand
 
-from api.models.episode import Episode
-from api.models.release import Release
-from api.services.omdb_api import OMDBApiService
+from api_v1.models.episode import Episode
+from api_v1.models.release import Release
+from api_v1.services.omdb_api import OMDBApiService
 
 
 class Command(BaseCommand):

@@ -13,18 +13,18 @@ services:
     volumes:
       - .:/src:delegated
     restart: unless-stopped
-
-  cache:
-    image: redis:alpine
-    ports:
-      - 6379:6379
+    depends_on:
+      - database
+      - postgres
 
   database:
-    image: amazon/dynamodb-local:latest
+    image: instructure/dynamo-local-admin:latest
     env_file:
       - env/local.env
     ports:
       - 8000:8000
+      - 8001:8001
+      - 8002:8002
 
   postgres:
     image: postgres:alpine
