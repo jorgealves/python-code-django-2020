@@ -1,3 +1,6 @@
+> If you want to take a look into repo Documentation please go to `GETTINGSTARTED.md` file
+
+
 The goal of this exercise is to test if you know your way around developing
 REST APIs in Python using docker. You can use any rest framework and database
 of your choice. Approach it the way you would an actual long-term project.
